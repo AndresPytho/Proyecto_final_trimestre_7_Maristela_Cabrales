@@ -1,0 +1,380 @@
+﻿@model Gestion_semilleros.Models.AdminDashboardViewModel
+@{
+    ViewBag.Title = "Panel de Administración";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SIGES - Panel de Administración</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1E3A5F;
+            --accent: #2563EB;
+            --bg: #F5F7FA;
+            --text: #1F2937;
+            --muted: #6B7280;
+            --border: #E5E7EB;
+        }
+
+        body {
+            font-family: 'Sora', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 250px;
+            background: var(--primary);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .sidebar::before {
+                content: '';
+                position: absolute;
+                top: -80px;
+                right: -80px;
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                background: rgba(37,99,235,0.12);
+                pointer-events: none;
+            }
+
+        .sidebar-header {
+            padding: 28px 24px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-title {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .sidebar-sub {
+            color: rgba(255,255,255,0.4);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        .sidebar-nav {
+            padding: 20px 16px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .nav-section {
+            font-size: 10px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.28);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 14px 8px 5px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 10px 12px;
+            border-radius: 9px;
+            color: rgba(255,255,255,0.65);
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 500;
+            transition: all 0.18s;
+        }
+
+            .nav-link:hover {
+                background: rgba(255,255,255,0.07);
+                color: #fff;
+            }
+
+            .nav-link.active {
+                background: var(--accent);
+                color: #fff;
+                box-shadow: 0 4px 14px rgba(37,99,235,0.35);
+            }
+
+        .nav-icon {
+            font-size: 15px;
+            width: 18px;
+            text-align: center;
+        }
+
+        .sidebar-footer {
+            padding: 16px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .admin-pill {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.06);
+        }
+
+        .admin-avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #fff;
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+
+        .admin-name {
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .admin-role {
+            color: rgba(255,255,255,0.38);
+            font-size: 11px;
+        }
+
+        /* MAIN */
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .topbar {
+            background: #fff;
+            height: 62px;
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .topbar-title {
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .topbar-date {
+            font-size: 12px;
+            color: var(--muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .content {
+            padding: 30px 32px;
+        }
+
+        /* STATS */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 18px;
+        }
+
+        .stat-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px 18px;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.18s, box-shadow 0.18s;
+        }
+
+            .stat-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 22px rgba(0,0,0,0.07);
+            }
+
+        .stat-stripe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            border-radius: 12px 0 0 12px;
+            background: #9CA3AF;
+        }
+
+        .stat-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .stat-ico {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            background: #F3F4F6;
+        }
+
+        .stat-num {
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <div class="logo-icon">🌱</div>
+                <div>
+                    <div class="sidebar-title">SIGES</div>
+                    <div class="sidebar-sub">Panel Administrador</div>
+                </div>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-section">General</div>
+            <a href="#" class="nav-link active"><span class="nav-icon">🏠</span> Inicio</a>
+            <div class="nav-section">Gestión</div>
+            <a href="#" class="nav-link"><span class="nav-icon">🌿</span> Gestión Semilleros</a>
+            <a href="#" class="nav-link"><span class="nav-icon">👥</span> Usuarios</a>
+            <a href="#" class="nav-link"><span class="nav-icon">📁</span> Proyectos</a>
+            <a href="#" class="nav-link"><span class="nav-icon">📅</span> Reuniones</a>
+            <a href="#" class="nav-link"><span class="nav-icon">🤝</span> Patrocinadores</a>
+            <div class="nav-section">Sistema</div>
+            <a href="#" class="nav-link"><span class="nav-icon">📊</span> Reportes</a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="admin-pill">
+                <div class="admin-avatar">A</div>
+                <div>
+                    <div class="admin-name">Administrador</div>
+                    <div class="admin-role">Super Admin</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main">
+        <div class="topbar">
+            <div class="topbar-title">Dashboard del Administrador</div>
+            <div class="topbar-date">@DateTime.Now.ToString("dd MMM yyyy")</div>
+        </div>
+        <div class="content">
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-stripe"></div>
+                    <div class="stat-top">
+                        <div class="stat-label">Semilleros</div>
+                        <div class="stat-ico">🌿</div>
+                    </div>
+                    <div class="stat-num">@Model.TotalSemilleros</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-stripe"></div>
+                    <div class="stat-top">
+                        <div class="stat-label">Usuarios</div>
+                        <div class="stat-ico">👥</div>
+                    </div>
+                    <div class="stat-num">@Model.TotalUsuarios</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-stripe"></div>
+                    <div class="stat-top">
+                        <div class="stat-label">Proyectos</div>
+                        <div class="stat-ico">📁</div>
+                    </div>
+                    <div class="stat-num">@Model.TotalProyectos</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-stripe"></div>
+                    <div class="stat-top">
+                        <div class="stat-label">Reuniones</div>
+                        <div class="stat-ico">📅</div>
+                    </div>
+                    <div class="stat-num">@Model.TotalReuniones</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-stripe"></div>
+                    <div class="stat-top">
+                        <div class="stat-label">Patrocinadores</div>
+                        <div class="stat-ico">🤝</div>
+                    </div>
+                    <div class="stat-num">@Model.TotalPatrocinadores</div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

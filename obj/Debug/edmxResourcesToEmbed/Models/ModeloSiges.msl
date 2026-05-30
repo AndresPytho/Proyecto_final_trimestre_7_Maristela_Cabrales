@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Gestion_de_semilleroEntities1">
+    <EntitySetMapping Name="Actividad">
+      <EntityTypeMapping TypeName="Model.Actividad">
+        <MappingFragment StoreEntitySet="Actividad">
+          <ScalarProperty Name="idActividad" ColumnName="idActividad" />
+          <ScalarProperty Name="idFase" ColumnName="idFase" />
+          <ScalarProperty Name="nombreActividad" ColumnName="nombreActividad" />
+          <ScalarProperty Name="descripcionActividad" ColumnName="descripcionActividad" />
+          <ScalarProperty Name="fechaInicioActividad" ColumnName="fechaInicioActividad" />
+          <ScalarProperty Name="fechaFinActividad" ColumnName="fechaFinActividad" />
+          <ScalarProperty Name="estadoActividad" ColumnName="estadoActividad" />
+          <ScalarProperty Name="tiempoEstimadoHoras" ColumnName="tiempoEstimadoHoras" />
+          <ScalarProperty Name="prioridadActividad" ColumnName="prioridadActividad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Evento">
+      <EntityTypeMapping TypeName="Model.Evento">
+        <MappingFragment StoreEntitySet="Evento">
+          <ScalarProperty Name="idEvento" ColumnName="idEvento" />
+          <ScalarProperty Name="nombreEvento" ColumnName="nombreEvento" />
+          <ScalarProperty Name="lugarEvento" ColumnName="lugarEvento" />
+          <ScalarProperty Name="descripcionEvento" ColumnName="descripcionEvento" />
+          <ScalarProperty Name="fechaEvento" ColumnName="fechaEvento" />
+          <ScalarProperty Name="horaEvento" ColumnName="horaEvento" />
+          <ScalarProperty Name="estadoEvento" ColumnName="estadoEvento" />
+          <ScalarProperty Name="estadoRegistro" ColumnName="estadoRegistro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Fases">
+      <EntityTypeMapping TypeName="Model.Fases">
+        <MappingFragment StoreEntitySet="Fases">
+          <ScalarProperty Name="idFase" ColumnName="idFase" />
+          <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+          <ScalarProperty Name="nombreFase" ColumnName="nombreFase" />
+          <ScalarProperty Name="descripcionFase" ColumnName="descripcionFase" />
+          <ScalarProperty Name="fechaInicioFase" ColumnName="fechaInicioFase" />
+          <ScalarProperty Name="fechaFinFase" ColumnName="fechaFinFase" />
+          <ScalarProperty Name="estadoFase" ColumnName="estadoFase" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Patrocinadores">
+      <EntityTypeMapping TypeName="Model.Patrocinadores">
+        <MappingFragment StoreEntitySet="Patrocinadores">
+          <ScalarProperty Name="idPatrocinador" ColumnName="idPatrocinador" />
+          <ScalarProperty Name="nombrePatrocinador" ColumnName="nombrePatrocinador" />
+          <ScalarProperty Name="tipoPatrocinador" ColumnName="tipoPatrocinador" />
+          <ScalarProperty Name="telefonoPatrocinador" ColumnName="telefonoPatrocinador" />
+          <ScalarProperty Name="montoAportePatrocinador" ColumnName="montoAportePatrocinador" />
+          <ScalarProperty Name="correoPatrocinador" ColumnName="correoPatrocinador" />
+          <ScalarProperty Name="estadoRegistro" ColumnName="estadoRegistro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatrocinadoresEventos">
+      <EntityTypeMapping TypeName="Model.PatrocinadoresEventos">
+        <MappingFragment StoreEntitySet="PatrocinadoresEventos">
+          <ScalarProperty Name="idPatrocinador" ColumnName="idPatrocinador" />
+          <ScalarProperty Name="idEvento" ColumnName="idEvento" />
+          <ScalarProperty Name="fechaAsignacion" ColumnName="fechaAsignacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Proyecto">
+      <EntityTypeMapping TypeName="Model.Proyecto">
+        <MappingFragment StoreEntitySet="Proyecto">
+          <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+          <ScalarProperty Name="idSemillero" ColumnName="idSemillero" />
+          <ScalarProperty Name="nombreProyecto" ColumnName="nombreProyecto" />
+          <ScalarProperty Name="fechaInicioProyecto" ColumnName="fechaInicioProyecto" />
+          <ScalarProperty Name="objetivoProyecto" ColumnName="objetivoProyecto" />
+          <ScalarProperty Name="fechaFinProyecto" ColumnName="fechaFinProyecto" />
+          <ScalarProperty Name="estadoProyecto" ColumnName="estadoProyecto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProyectoEvento">
+      <EntityTypeMapping TypeName="Model.ProyectoEvento">
+        <MappingFragment StoreEntitySet="ProyectoEvento">
+          <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+          <ScalarProperty Name="idEvento" ColumnName="idEvento" />
+          <ScalarProperty Name="fechaVinculacion" ColumnName="fechaVinculacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reunion">
+      <EntityTypeMapping TypeName="Model.Reunion">
+        <MappingFragment StoreEntitySet="Reunion">
+          <ScalarProperty Name="idReunion" ColumnName="idReunion" />
+          <ScalarProperty Name="idSemillero" ColumnName="idSemillero" />
+          <ScalarProperty Name="temaReunion" ColumnName="temaReunion" />
+          <ScalarProperty Name="fechaReunion" ColumnName="fechaReunion" />
+          <ScalarProperty Name="horaReunion" ColumnName="horaReunion" />
+          <ScalarProperty Name="estadoReunion" ColumnName="estadoReunion" />
+          <ScalarProperty Name="urlReunion" ColumnName="urlReunion" />
+          <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Semillero">
+      <EntityTypeMapping TypeName="Model.Semillero">
+        <MappingFragment StoreEntitySet="Semillero">
+          <ScalarProperty Name="idSemillero" ColumnName="idSemillero" />
+          <ScalarProperty Name="nombreSemillero" ColumnName="nombreSemillero" />
+          <ScalarProperty Name="lineaSemillero" ColumnName="lineaSemillero" />
+          <ScalarProperty Name="fechaCreacionSemillero" ColumnName="fechaCreacionSemillero" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="Model.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="idSemillero" ColumnName="idSemillero" />
+          <ScalarProperty Name="nombreUsuario" ColumnName="nombreUsuario" />
+          <ScalarProperty Name="rolUsuario" ColumnName="rolUsuario" />
+          <ScalarProperty Name="contraseñaUsuario" ColumnName="contraseñaUsuario" />
+          <ScalarProperty Name="CorreoUsuario" ColumnName="CorreoUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

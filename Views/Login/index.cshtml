@@ -1,0 +1,213 @@
+﻿@model Gestion_semilleros.Models.LoginViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login - SIGES</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            font-family: 'Segoe UI',sans-serif;
+            overflow: hidden;
+            background: #f8fafc;
+        }
+
+        .left-side {
+            width: 50%;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            border-right: 1px solid #e5e7eb;
+        }
+
+            .left-side img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient( rgba(0,0,0,.35), rgba(0,0,0,.45) );
+        }
+
+        .left-content {
+            position: absolute;
+            bottom: 60px;
+            left: 60px;
+            right: 60px;
+            color: white;
+            z-index: 2;
+        }
+
+            .left-content h1 {
+                font-size: 42px;
+                font-weight: 700;
+                margin-bottom: 15px;
+            }
+
+            .left-content p {
+                font-size: 18px;
+                line-height: 1.6;
+                opacity: .95;
+            }
+
+        .right-side {
+            width: 50%;
+            min-width: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: white;
+            padding: 40px;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .logo-siges {
+            font-size: 14px;
+            font-weight: 700;
+            color: #16a34a;
+            letter-spacing: 3px;
+            margin-bottom: 5px;
+        }
+
+        .system-name {
+            color: #64748b;
+            font-size: 15px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-size: 52px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1e293b;
+        }
+
+        .form-control {
+            height: 52px;
+            border-radius: 12px;
+            border: 1px solid #d1d5db;
+            padding-left: 15px;
+            font-size: 15px;
+        }
+
+            .form-control:focus {
+                border-color: #003366;
+                box-shadow: 0 0 0 0.15rem rgba(0,51,102,.15);
+            }
+
+        .btn-login {
+            width: 100%;
+            height: 52px;
+            border: none;
+            border-radius: 12px;
+            background: #003366;
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: .3s;
+        }
+
+            .btn-login:hover {
+                background: #002244;
+            }
+
+        /* Estilo para que el mensaje de error no se vea como un cuadro rosa vacío */
+        .validation-summary-errors {
+            margin-bottom: 20px;
+        }
+
+            .validation-summary-errors ul {
+                list-style: none;
+                padding: 0;
+                color: #dc3545;
+                font-weight: bold;
+            }
+
+        @@media(max-width:992px) {
+            .left-side {
+                display: none;
+            }
+
+            .right-side {
+                width: 100%;
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="left-side">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600&auto=format&fit=crop" alt="SIGES" />
+        <div class="overlay"></div>
+        <div class="left-content">
+            <h1>SIGES</h1>
+            <p>Sistema Integral de Gestión de Semilleros. Plataforma orientada a la administración y seguimiento de proyectos.</p>
+        </div>
+    </div>
+
+    <div class="right-side">
+        <div class="login-box">
+            <div class="logo-siges">SIGES</div>
+            <div class="system-name">Sistema Integral de Gestión de Semilleros</div>
+
+            <h2>Iniciar Sesión</h2>
+
+            @Html.ValidationSummary(false, "", new { @class = "text-danger fw-bold" })
+
+            <p class="subtitle">Ingrese sus credenciales para acceder al sistema</p>
+                
+            @using (Html.BeginForm("Index", "Login", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="mb-3">
+                    <label class="form-label">Correo electrónico</label>
+                    @Html.TextBoxFor(m => m.CorreoUsuario, new { @class = "form-control", placeholder = "Ingrese su correo" })
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Contraseña</label>
+                    @Html.PasswordFor(m => m.ContraseñaUsuario, new { @class = "form-control", placeholder = "Ingrese su contraseña" })
+                </div>
+
+                <button type="submit" class="btn-login">Ingresar</button>
+            }
+        </div>
+    </div>
+</body>
+</html>

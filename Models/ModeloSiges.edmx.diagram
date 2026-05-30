@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2905407a1c9743b181620608f236ee37" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.Actividad" Width="1.5" PointX="7.5" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Evento" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Fases" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Patrocinadores" Width="1.5" PointX="3" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PatrocinadoresEventos" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Proyecto" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ProyectoEvento" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Reunion" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Semillero" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Usuario" Width="1.5" PointX="3" PointY="14.25" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK__Actividad__idFas__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Patrocina__idEve__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__ProyectoE__idEve__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Fases__idProyect__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Patrocina__idPat__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Proyecto__idSemi__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__ProyectoE__idPro__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Reunion__idSemil__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Usuario__idSemil__44FF419A" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

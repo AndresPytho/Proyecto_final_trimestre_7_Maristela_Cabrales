@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Actividad">
+    <Key>
+      <PropertyRef Name="idActividad" />
+    </Key>
+    <Property Name="idActividad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idFase" Type="int" Nullable="false" />
+    <Property Name="nombreActividad" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="descripcionActividad" Type="varchar" MaxLength="500" />
+    <Property Name="fechaInicioActividad" Type="date" Nullable="false" />
+    <Property Name="fechaFinActividad" Type="date" />
+    <Property Name="estadoActividad" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="tiempoEstimadoHoras" Type="int" />
+    <Property Name="prioridadActividad" Type="varchar" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Evento">
+    <Key>
+      <PropertyRef Name="idEvento" />
+    </Key>
+    <Property Name="idEvento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombreEvento" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="lugarEvento" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="descripcionEvento" Type="varchar" MaxLength="500" />
+    <Property Name="fechaEvento" Type="date" Nullable="false" />
+    <Property Name="horaEvento" Type="time" Precision="7" Nullable="false" />
+    <Property Name="estadoEvento" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="estadoRegistro" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Fases">
+    <Key>
+      <PropertyRef Name="idFase" />
+    </Key>
+    <Property Name="idFase" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idProyecto" Type="int" Nullable="false" />
+    <Property Name="nombreFase" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="descripcionFase" Type="varchar" MaxLength="500" />
+    <Property Name="fechaInicioFase" Type="date" Nullable="false" />
+    <Property Name="fechaFinFase" Type="date" />
+    <Property Name="estadoFase" Type="varchar" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Patrocinadores">
+    <Key>
+      <PropertyRef Name="idPatrocinador" />
+    </Key>
+    <Property Name="idPatrocinador" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombrePatrocinador" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="tipoPatrocinador" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="telefonoPatrocinador" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="montoAportePatrocinador" Type="int" Nullable="false" />
+    <Property Name="correoPatrocinador" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="estadoRegistro" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PatrocinadoresEventos">
+    <Key>
+      <PropertyRef Name="idPatrocinador" />
+      <PropertyRef Name="idEvento" />
+    </Key>
+    <Property Name="idPatrocinador" Type="int" Nullable="false" />
+    <Property Name="idEvento" Type="int" Nullable="false" />
+    <Property Name="fechaAsignacion" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="Proyecto">
+    <Key>
+      <PropertyRef Name="idProyecto" />
+    </Key>
+    <Property Name="idProyecto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idSemillero" Type="int" Nullable="false" />
+    <Property Name="nombreProyecto" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="fechaInicioProyecto" Type="date" Nullable="false" />
+    <Property Name="objetivoProyecto" Type="varchar" MaxLength="1000" />
+    <Property Name="fechaFinProyecto" Type="date" />
+    <Property Name="estadoProyecto" Type="varchar" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProyectoEvento">
+    <Key>
+      <PropertyRef Name="idProyecto" />
+      <PropertyRef Name="idEvento" />
+    </Key>
+    <Property Name="idProyecto" Type="int" Nullable="false" />
+    <Property Name="idEvento" Type="int" Nullable="false" />
+    <Property Name="fechaVinculacion" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="Reunion">
+    <Key>
+      <PropertyRef Name="idReunion" />
+    </Key>
+    <Property Name="idReunion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idSemillero" Type="int" Nullable="false" />
+    <Property Name="temaReunion" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="fechaReunion" Type="date" Nullable="false" />
+    <Property Name="horaReunion" Type="time" Precision="7" Nullable="false" />
+    <Property Name="estadoReunion" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="urlReunion" Type="varchar" MaxLength="255" />
+    <Property Name="fechaCreacion" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="Semillero">
+    <Key>
+      <PropertyRef Name="idSemillero" />
+    </Key>
+    <Property Name="idSemillero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombreSemillero" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="lineaSemillero" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="fechaCreacionSemillero" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="idUsuario" />
+    </Key>
+    <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idSemillero" Type="int" />
+    <Property Name="nombreUsuario" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="rolUsuario" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="contraseñaUsuario" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="CorreoUsuario" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="estadoRegistro" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Actividad__idFas__59FA5E80">
+    <End Role="Fases" Type="Self.Fases" Multiplicity="1" />
+    <End Role="Actividad" Type="Self.Actividad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fases">
+        <PropertyRef Name="idFase" />
+      </Principal>
+      <Dependent Role="Actividad">
+        <PropertyRef Name="idFase" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Fases__idProyect__5441852A">
+    <End Role="Proyecto" Type="Self.Proyecto" Multiplicity="1" />
+    <End Role="Fases" Type="Self.Fases" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proyecto">
+        <PropertyRef Name="idProyecto" />
+      </Principal>
+      <Dependent Role="Fases">
+        <PropertyRef Name="idProyecto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Patrocina__idEve__656C112C">
+    <End Role="Evento" Type="Self.Evento" Multiplicity="1" />
+    <End Role="PatrocinadoresEventos" Type="Self.PatrocinadoresEventos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Evento">
+        <PropertyRef Name="idEvento" />
+      </Principal>
+      <Dependent Role="PatrocinadoresEventos">
+        <PropertyRef Name="idEvento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Patrocina__idPat__6477ECF3">
+    <End Role="Patrocinadores" Type="Self.Patrocinadores" Multiplicity="1" />
+    <End Role="PatrocinadoresEventos" Type="Self.PatrocinadoresEventos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patrocinadores">
+        <PropertyRef Name="idPatrocinador" />
+      </Principal>
+      <Dependent Role="PatrocinadoresEventos">
+        <PropertyRef Name="idPatrocinador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Proyecto__idSemi__4F7CD00D">
+    <End Role="Semillero" Type="Self.Semillero" Multiplicity="1" />
+    <End Role="Proyecto" Type="Self.Proyecto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Semillero">
+        <PropertyRef Name="idSemillero" />
+      </Principal>
+      <Dependent Role="Proyecto">
+        <PropertyRef Name="idSemillero" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ProyectoE__idEve__60A75C0F">
+    <End Role="Evento" Type="Self.Evento" Multiplicity="1" />
+    <End Role="ProyectoEvento" Type="Self.ProyectoEvento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Evento">
+        <PropertyRef Name="idEvento" />
+      </Principal>
+      <Dependent Role="ProyectoEvento">
+        <PropertyRef Name="idEvento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ProyectoE__idPro__5FB337D6">
+    <End Role="Proyecto" Type="Self.Proyecto" Multiplicity="1" />
+    <End Role="ProyectoEvento" Type="Self.ProyectoEvento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proyecto">
+        <PropertyRef Name="idProyecto" />
+      </Principal>
+      <Dependent Role="ProyectoEvento">
+        <PropertyRef Name="idProyecto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reunion__idSemil__4AB81AF0">
+    <End Role="Semillero" Type="Self.Semillero" Multiplicity="1" />
+    <End Role="Reunion" Type="Self.Reunion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Semillero">
+        <PropertyRef Name="idSemillero" />
+      </Principal>
+      <Dependent Role="Reunion">
+        <PropertyRef Name="idSemillero" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Usuario__idSemil__44FF419A">
+    <End Role="Semillero" Type="Self.Semillero" Multiplicity="0..1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Semillero">
+        <PropertyRef Name="idSemillero" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="idSemillero" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="Actividad" EntityType="Self.Actividad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Evento" EntityType="Self.Evento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Fases" EntityType="Self.Fases" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Patrocinadores" EntityType="Self.Patrocinadores" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PatrocinadoresEventos" EntityType="Self.PatrocinadoresEventos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Proyecto" EntityType="Self.Proyecto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProyectoEvento" EntityType="Self.ProyectoEvento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reunion" EntityType="Self.Reunion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Semillero" EntityType="Self.Semillero" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Actividad__idFas__59FA5E80" Association="Self.FK__Actividad__idFas__59FA5E80">
+      <End Role="Fases" EntitySet="Fases" />
+      <End Role="Actividad" EntitySet="Actividad" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Fases__idProyect__5441852A" Association="Self.FK__Fases__idProyect__5441852A">
+      <End Role="Proyecto" EntitySet="Proyecto" />
+      <End Role="Fases" EntitySet="Fases" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Patrocina__idEve__656C112C" Association="Self.FK__Patrocina__idEve__656C112C">
+      <End Role="Evento" EntitySet="Evento" />
+      <End Role="PatrocinadoresEventos" EntitySet="PatrocinadoresEventos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Patrocina__idPat__6477ECF3" Association="Self.FK__Patrocina__idPat__6477ECF3">
+      <End Role="Patrocinadores" EntitySet="Patrocinadores" />
+      <End Role="PatrocinadoresEventos" EntitySet="PatrocinadoresEventos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Proyecto__idSemi__4F7CD00D" Association="Self.FK__Proyecto__idSemi__4F7CD00D">
+      <End Role="Semillero" EntitySet="Semillero" />
+      <End Role="Proyecto" EntitySet="Proyecto" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ProyectoE__idEve__60A75C0F" Association="Self.FK__ProyectoE__idEve__60A75C0F">
+      <End Role="Evento" EntitySet="Evento" />
+      <End Role="ProyectoEvento" EntitySet="ProyectoEvento" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ProyectoE__idPro__5FB337D6" Association="Self.FK__ProyectoE__idPro__5FB337D6">
+      <End Role="Proyecto" EntitySet="Proyecto" />
+      <End Role="ProyectoEvento" EntitySet="ProyectoEvento" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reunion__idSemil__4AB81AF0" Association="Self.FK__Reunion__idSemil__4AB81AF0">
+      <End Role="Semillero" EntitySet="Semillero" />
+      <End Role="Reunion" EntitySet="Reunion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Usuario__idSemil__44FF419A" Association="Self.FK__Usuario__idSemil__44FF419A">
+      <End Role="Semillero" EntitySet="Semillero" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
